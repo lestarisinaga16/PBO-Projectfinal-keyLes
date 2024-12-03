@@ -19,4 +19,8 @@ public class Database {
         this.port = port;
         this.connection = connection;
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
 }
