@@ -1,4 +1,4 @@
-package config;
+package PassengerApp.config;
 
 
 import java.sql.Connection;

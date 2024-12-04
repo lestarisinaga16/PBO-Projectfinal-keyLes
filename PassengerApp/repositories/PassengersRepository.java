@@ -1,6 +1,6 @@
-package repositories;
+package PassengerApp.repositories;
 
-import entities.Passengers;
+import PassengerApp.entities.Passengers;
 
 public interface PassengersRepository {
     Passengers[] getAll();

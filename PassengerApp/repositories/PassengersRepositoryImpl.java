@@ -1,6 +1,6 @@
-package repositories;
+package PassengerApp.repositories;
 
-import entities.Passengers;
+import PassengerApp.entities.Passengers;
 
 public class PassengersRepositoryImpl implements PassengersRepository {
     public static Passengers[] passengers = new Passengers[2]; // Initial array size

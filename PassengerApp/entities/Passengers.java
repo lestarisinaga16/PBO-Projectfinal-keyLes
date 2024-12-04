@@ -1,4 +1,4 @@
-package entities;
+package PassengerApp.entities;
 
 public class Passengers {
     private String name;

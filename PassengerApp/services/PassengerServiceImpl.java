@@ -1,7 +1,7 @@
-package services;
+package PassengerApp.services;
 
-import entities.Passengers;
-import repositories.PassengersRepository;
+import PassengerApp.entities.Passengers;
+import PassengerApp.repositories.PassengersRepository;
 
 public class PassengerServiceImpl implements PassengersService {
     private final PassengersRepository passengerRepository;

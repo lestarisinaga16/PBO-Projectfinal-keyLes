@@ -1,6 +1,6 @@
-package services;
+package PassengerApp.services;
 
-import entities.Passengers;
+import PassengerApp.entities.Passengers;
 
 public interface PassengersService {
     Passengers[] getPassengerList();

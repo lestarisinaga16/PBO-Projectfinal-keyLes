@@ -1,7 +1,7 @@
-package views;
+package PassengerApp.views;
 
-import entities.Passengers;
-import services.PassengersService;
+import PassengerApp.entities.Passengers;
+import PassengerApp.services.PassengersService;
 
 import java.util.Scanner;
 
