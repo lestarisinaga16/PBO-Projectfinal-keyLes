@@ -9,6 +9,7 @@ public class PassengerTerminalViewImpl implements PassengersView {
     public static Scanner scanner = new Scanner(System.in);
     private final PassengersService passengerService;
 
+
     public PassengerTerminalViewImpl(PassengersService passengerService) {
         this.passengerService = passengerService;
     }
