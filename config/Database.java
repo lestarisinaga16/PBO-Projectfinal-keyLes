@@ -31,19 +31,11 @@ public class Database {
     public void setup() {
         String mysqlConnUrlTemplate = "jdbc:mysql://%s:%s/%s?useSSL=false";
         try {
-            // Memuat driver MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Membuat koneksi ke database menggunakan DriverManager
-            connection = DriverManager.getConnection(
-                    String.format(mysqlConnUrlTemplate, host, port, dbName),
-                    userName,
-                    password
-            );
-            System.out.println("Koneksi ke database FlightTravelAgent berhasil!");
+            connection = DriverManager.getConnection(String.format(mysqlConnUrlTemplate, host, port, dbName), userName, password);
+            System.out.println("Database connected!");
 
         } catch (SQLException | ClassNotFoundException e) {
-            // Menangani kesalahan koneksi
             System.err.println("Gagal terhubung ke database: " + e.getMessage());
             throw new RuntimeException(e);
         }

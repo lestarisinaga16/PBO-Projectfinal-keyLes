@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+
 public class PassengerRepositoryDbImpl implements PassengersRepository {
     private final Database database;
 
