@@ -2,12 +2,14 @@ package repositories;
 
 import config.Database;
 import entities.Passengers;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PassengerRepositoryDbImpl implements PassengersRepository {
