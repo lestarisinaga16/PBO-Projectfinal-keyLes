@@ -40,16 +40,4 @@ public class Database {
             throw new RuntimeException(e);
         }
     }
-
-
-    public void close() {
-        if (connection != null) {
-            try {
-                connection.close();
-                System.out.println("Koneksi ke database berhasil ditutup.");
-            } catch (SQLException e) {
-                System.err.println("Gagal menutup koneksi database: " + e.getMessage());
-            }
-        }
-    }
 }
