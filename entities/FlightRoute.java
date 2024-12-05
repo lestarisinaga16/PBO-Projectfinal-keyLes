@@ -15,6 +15,7 @@ public class FlightRoute {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getDepartureCity() {
         return departureCity;
     }
@@ -47,11 +48,4 @@ public class FlightRoute {
         this.arrivalTime = arrivalTime;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

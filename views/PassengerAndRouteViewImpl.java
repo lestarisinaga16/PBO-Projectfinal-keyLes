@@ -116,13 +116,13 @@ public class PassengerAndRouteViewImpl implements PassengerAndRouteView {
         int id = scanner.nextInt();
         scanner.nextLine();  // Consume newline
 
-        // Find the passenger by ID
-        Passengers[] passengers = passengersService.getPassengerList();
+        // Retrieve the passenger list
+        Passengers[] passengersList = passengersService.getPassengerList();
         Passengers passengerToEdit = null;
 
-        // Look for the passenger in the list
-        for (Passengers passenger : passengers) {
-            if (passenger.getId() == id) {  // Assuming each passenger has a unique ID
+        // Find the passenger with the matching ID
+        for (Passengers passenger : passengersList) {
+            if (passenger.getId() == id) {  // Pastikan ada metode getId() di kelas Passengers
                 passengerToEdit = passenger;
                 break;
             }
@@ -134,8 +134,9 @@ public class PassengerAndRouteViewImpl implements PassengerAndRouteView {
             if (!newName.isEmpty()) {
                 passengerToEdit.setName(newName);
             }
-            // Repeat for other fields like age, passport number, etc.
-            passengersService.editPassenger(id, passengerToEdit);  // Update passenger info
+            // Ulangi proses ini untuk atribut lainnya...
+
+            passengersService.editPassenger(id, passengerToEdit);  // Kirim objek individual
             System.out.println("Passenger edited successfully!");
         } else {
             System.out.println("Passenger not found!");
@@ -198,21 +199,36 @@ public class PassengerAndRouteViewImpl implements PassengerAndRouteView {
         System.out.println("Enter route ID to edit:");
         int id = scanner.nextInt();
         scanner.nextLine();  // Consume newline
-        FlightRoute[] route = routeService.getAllFlightRoutes();
 
-        if (route != null) {
+        // Retrieve all routes
+        FlightRoute[] routes = routeService.getAllFlightRoutes();
+        FlightRoute routeToEdit = null;
+
+        // Find the route with the matching ID
+        for (FlightRoute route : routes) {
+            if (route.getId() == id) {
+                routeToEdit = route;
+                break;
+            }
+        }
+
+        if (routeToEdit != null) {
+            // Now you can update the route
             System.out.println("Enter new departure city (leave blank to keep current):");
             String newDepartureCity = scanner.nextLine();
             if (!newDepartureCity.isEmpty()) {
-                route.setDepartureCity(newDepartureCity);
+                routeToEdit.setDepartureCity(newDepartureCity);
             }
+
             // Repeat for other fields...
-            routeService.editFlightRoute;  // Call service to edit route
+
+            routeService.editFlightRoute(routeToEdit);  // Call service to edit route
             System.out.println("Route edited successfully!");
         } else {
             System.out.println("Route not found!");
         }
     }
+
 
     @Override
     public void removeRoute() {
