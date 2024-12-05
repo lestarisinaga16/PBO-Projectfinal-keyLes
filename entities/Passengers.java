@@ -6,9 +6,9 @@ public class Passengers {
     private String gender;
     private String passportNumber;
     private String ktpNumber;
-    private int id;  // Add the id field
+    private int id;  // Menambahkan field id
 
-    //setternya
+    // Setter methods
     public void setName(String name) {
         this.name = name;
     }
@@ -29,7 +29,7 @@ public class Passengers {
         this.ktpNumber = ktpNumber;
     }
 
-    public void setId(int id) {  // Setter for id
+    public void setId(int id) {  // Setter untuk id
         this.id = id;
     }
 
@@ -54,7 +54,7 @@ public class Passengers {
         return ktpNumber;
     }
 
-    public int getId() {  // Getter for id
+    public int getId() {  // Getter untuk id
         return id;
     }
 }

@@ -21,43 +21,49 @@ public class PassengerTerminalViewImpl implements PassengersView {
     public void showMainMenu() {
         boolean isRunning = true;
         while (isRunning) {
-            showPassengerList();
-            System.out.println("MENU : ");
-            System.out.println("1. Tambah Penumpang");
-            System.out.println("2. Hapus Penumpang");
-            System.out.println("3. Edit Penumpang");
-            System.out.println("4. Keluar");
-
-            String selectedMenu = input("Pilih");
+            System.out.println("\nMENU:");
+            System.out.println("1. Tambah Data Penumpang");
+            System.out.println("2. Tampilkan Daftar Penumpang");
+            System.out.println("3. Tampilkan Daftar Rute");
+            System.out.println("4. Tambah Rute Penerbangan");
+            System.out.println("5. Edit Rute Penerbangan");
+            System.out.println("6. Hapus Rute Penerbangan");
+            System.out.println("7. Edit Informasi Penumpang");
+            System.out.println("8. Keluar dari Sistem");
+            String selectedMenu = input("Pilih menu");
 
             switch (selectedMenu) {
                 case "1":
                     showMenuAddPassenger();
                     break;
                 case "2":
-                    showMenuRemovePassenger();
+                    showPassengerList();
                     break;
                 case "3":
-                    showMenuEditPassenger();
+                    // Tampilkan Daftar Rute (belum diimplementasikan)
                     break;
                 case "4":
+                    // Tambah Rute Penerbangan (belum diimplementasikan)
+                    break;
+                case "5":
+                    // Edit Rute Penerbangan (belum diimplementasikan)
+                    break;
+                case "6":
+                    // Hapus Rute Penerbangan (belum diimplementasikan)
+                    break;
+                case "7":
+                    showPassengerList();
+                    String selectedPassengerToEdit = input("Pilih nomor penumpang yang akan diedit (x untuk batal)");
+                    if (!selectedPassengerToEdit.equalsIgnoreCase("x")) {
+                        editPassengerInfo(Integer.parseInt(selectedPassengerToEdit));
+                    }
+                    break;
+                case "8":
+                    System.out.println("Keluar dari aplikasi.");
                     isRunning = false;
                     break;
                 default:
                     System.out.println("Pilih menu dengan benar");
-            }
-        }
-    }
-
-    public void showMenuRemovePassenger() {
-        System.out.println("MENGHAPUS DATA PENUMPANG");
-        var number = input("Nomor yang dihapus (x jika batal)");
-        if (!number.equalsIgnoreCase("x")) {
-            boolean success = passengerService.removePassenger(Integer.valueOf(number));
-            if (!success) {
-                System.out.println("Gagal menghapus penumpang : " + number);
-            } else {
-                System.out.println("Berhasil menghapus penumpang.");
             }
         }
     }
@@ -83,14 +89,22 @@ public class PassengerTerminalViewImpl implements PassengersView {
         System.out.println("Penumpang berhasil ditambahkan.");
     }
 
-    public void showMenuEditPassenger() {
+    public void showPassengerList() {
+        System.out.println("DAFTAR PENUMPANG");
+        Passengers[] passengerList = passengerService.getPassengerList();
+        for (var i = 0; i < passengerList.length; i++) {
+            var passenger = passengerList[i];
+            if (passenger != null) {
+                System.out.println((i + 1) + ". Nama: " + passenger.getName() + ", Umur: " + passenger.getAge() +
+                        ", Jenis Kelamin: " + passenger.getGender() + ", Paspor: " + passenger.getPassportNumber() +
+                        ", KTP: " + passenger.getKtpNumber());
+            }
+        }
+    }
+
+    public void editPassengerInfo(int number) {
         System.out.println("MENGEDIT DATA PENUMPANG");
-        String selectedPassenger = input("Masukkan nomor penumpang (x jika batal)");
-        if (selectedPassenger.equalsIgnoreCase("x")) return;
-
-        String newName = input("Masukkan nama baru (x jika batal)");
-        if (newName.equalsIgnoreCase("x")) return;
-
+        String newName = input("Masukkan nama baru");
         String newAge = input("Masukkan umur baru");
         String newGender = input("Masukkan jenis kelamin baru (L/P)");
         String newPassportNumber = input("Masukkan nomor paspor baru");
@@ -103,7 +117,7 @@ public class PassengerTerminalViewImpl implements PassengersView {
         updatedPassenger.setPassportNumber(newPassportNumber);
         updatedPassenger.setKtpNumber(newKtpNumber);
 
-        boolean isEditSuccess = passengerService.editPassenger(Integer.valueOf(selectedPassenger), updatedPassenger);
+        boolean isEditSuccess = passengerService.editPassenger(number, updatedPassenger);
         if (isEditSuccess) {
             System.out.println("Berhasil mengedit data penumpang.");
         } else {
@@ -111,15 +125,15 @@ public class PassengerTerminalViewImpl implements PassengersView {
         }
     }
 
-    public void showPassengerList() {
-        System.out.println("DAFTAR PENUMPANG");
-        Passengers[] passengerList = passengerService.getPassengerList();
-        for (var i = 0; i < passengerList.length; i++) {
-            var passenger = passengerList[i];
-            if (passenger != null) {
-                System.out.println((i + 1) + ". Nama: " + passenger.getName() + ", Umur: " + passenger.getAge() +
-                        ", Jenis Kelamin: " + passenger.getGender() + ", Paspor: " + passenger.getPassportNumber() +
-                        ", KTP: " + passenger.getKtpNumber());
+    public void showMenuRemovePassenger() {
+        System.out.println("MENGHAPUS DATA PENUMPANG");
+        var number = input("Nomor yang dihapus (x jika batal)");
+        if (!number.equalsIgnoreCase("x")) {
+            boolean success = passengerService.removePassenger(Integer.valueOf(number));
+            if (!success) {
+                System.out.println("Gagal menghapus penumpang : " + number);
+            } else {
+                System.out.println("Berhasil menghapus penumpang.");
             }
         }
     }

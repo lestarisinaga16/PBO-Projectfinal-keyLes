@@ -3,7 +3,7 @@ package repositories;
 import entities.Passengers;
 
 public class PassengersRepositoryImpl implements PassengersRepository {
-    public static Passengers[] passengers = new Passengers[2]; // Initial array size
+    public static Passengers[] passengers = new Passengers[2]; // Ukuran array awal
 
     @Override
     public Passengers[] getAll() {
@@ -12,7 +12,7 @@ public class PassengersRepositoryImpl implements PassengersRepository {
 
     @Override
     public void add(final Passengers passenger) {
-        resizeArrayIfFull(); // Check and resize array if needed
+        resizeArrayIfFull(); // Periksa dan perbesar array jika diperlukan
         for (int i = 0; i < passengers.length; i++) {
             if (passengers[i] == null) {
                 passengers[i] = passenger;
@@ -61,11 +61,11 @@ public class PassengersRepositoryImpl implements PassengersRepository {
     }
 
     @Override
-    public Boolean edit(final Passengers passenger) {
-        if (isSelectedPassengerNotValid(passenger.getId())) {
+    public Boolean edit(final Passengers updatedPassenger) {
+        if (isSelectedPassengerNotValid(updatedPassenger.getId())) {
             return false;
         }
-        passengers[passenger.getId() - 1] = passenger;
+        passengers[updatedPassenger.getId() - 1] = updatedPassenger;
         return true;
     }
 }
