@@ -16,5 +16,8 @@ public interface PassengerAndRouteView {
     void editRoute();
     void removeRoute();
     void showRouteList(FlightRoute[] routes);
+
+    // Di dalam kelas PassengerAndRouteViewImpl
+    void showRouteList();
 }
 

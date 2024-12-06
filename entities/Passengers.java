@@ -8,6 +8,7 @@ public class Passengers {
     private String ktpNumber;
     private int id;  // Menambahkan field id
 
+
     // Setter methods
     public void setName(String name) {
         this.name = name;

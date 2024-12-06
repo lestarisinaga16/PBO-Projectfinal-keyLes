@@ -37,7 +37,7 @@ public class FlightRouteTerminalViewImpl implements FlightRouteView {
                     System.out.print("Masukkan Waktu Kedatangan (yyyy-MM-dd HH:mm): ");
                     String arrivalTime = scanner.next();
 
-                    FlightRoute route = new FlightRoute();
+                    FlightRoute route = new FlightRoute(0, departureCity, arrivalCity, departureTime, arrivalTime);
                     route.setDepartureCity(departureCity);
                     route.setArrivalCity(arrivalCity);
                     route.setDepartureTime(departureTime);

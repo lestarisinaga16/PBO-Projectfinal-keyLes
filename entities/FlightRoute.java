@@ -7,6 +7,17 @@ public class FlightRoute {
     private String arrivalTime;
     private int id;
 
+    public FlightRoute(int id, String departureCity, String arrivalCity, String departureTime, String arrivalTime) {
+        this.id = id;
+        this.departureCity = departureCity;
+        this.arrivalCity = arrivalCity;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+    }
+    public FlightRoute(){
+
+    }
+
     // Getters and Setters
     public int getId() {
         return id;

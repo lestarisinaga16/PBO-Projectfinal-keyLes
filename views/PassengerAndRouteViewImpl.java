@@ -5,6 +5,7 @@ import entities.FlightRoute;
 import services.PassengersService;
 import services.FlightRouteService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PassengerAndRouteViewImpl implements PassengerAndRouteView {
@@ -246,12 +247,20 @@ public class PassengerAndRouteViewImpl implements PassengerAndRouteView {
 
     @Override
     public void showRouteList(FlightRoute[] routes) {
-        if (routes == null || routes.length == 0) {
-            System.out.println("No routes found.");
-        } else {
-            for (FlightRoute route : routes) {
-                System.out.println(route.getDepartureCity() + " -> " + route.getArrivalCity() + " | " + route.getDepartureTime());
-            }
+
+    }
+
+    @Override
+    public void showRouteList() {
+        System.out.println("DAFTAR RUTE PENERBANGAN");
+        List<FlightRoute> routeList = List.of(routeService.getAllFlightRoutes()); // Pastikan Anda mendapatkan daftar rute
+        for (int i = 0; i < routeList.size(); i++) {
+            FlightRoute route = routeList.get(i);
+            System.out.println((i + 1) + ". ID: " + route.getId() + ", Departure City: " + route.getDepartureCity() +
+                    ", Arrival City: " + route.getArrivalCity() + ", Departure Time: " + route.getDepartureTime() +
+                    ", Arrival Time: " + route.getArrivalTime());
         }
     }
+
+
 }

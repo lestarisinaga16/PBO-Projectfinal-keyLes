@@ -10,6 +10,7 @@ public class PassengerServiceImpl implements PassengersService {
         this.passengerRepository = passengerRepository;
     }
 
+
     @Override
     public Passengers[] getPassengerList() {
         return passengerRepository.getAll();

@@ -12,8 +12,8 @@ import views.PassengerAndRouteViewImpl;
 
 public class Main {
     public static void main(String[] args) {
-        Database database = new Database("databasekeyles", "root", "", "localhost", "3306");
         // Setup untuk Passenger
+        Database database = new Database("databasekeyles", "root", "", "localhost", "3306");
         PassengersRepository passengerRepository = new PassengerRepositoryDbImpl(database);
         PassengersService passengersService = new PassengerServiceImpl(passengerRepository);
 
@@ -28,3 +28,5 @@ public class Main {
         passengerAndRouteView.run();
     }
 }
+
+

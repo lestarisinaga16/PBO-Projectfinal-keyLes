@@ -68,6 +68,7 @@ public class PassengerTerminalViewImpl implements PassengersView {
         }
     }
 
+    // Dalam PassengerTerminalViewImpl, pastikan data ditambahkan dengan benar
     public void showMenuAddPassenger() {
         System.out.println("MENAMBAH DATA PENUMPANG");
         String name = input("Nama Penumpang (x jika batal)");
@@ -85,22 +86,31 @@ public class PassengerTerminalViewImpl implements PassengersView {
         passenger.setPassportNumber(passportNumber);
         passenger.setKtpNumber(ktpNumber);
 
-        passengerService.addPassenger(passenger);
+        passengerService.addPassenger(passenger);  // Pastikan service dipanggil
         System.out.println("Penumpang berhasil ditambahkan.");
     }
+
+
+
 
     public void showPassengerList() {
         System.out.println("DAFTAR PENUMPANG");
         Passengers[] passengerList = passengerService.getPassengerList();
-        for (var i = 0; i < passengerList.length; i++) {
-            var passenger = passengerList[i];
-            if (passenger != null) {
-                System.out.println((i + 1) + ". Nama: " + passenger.getName() + ", Umur: " + passenger.getAge() +
-                        ", Jenis Kelamin: " + passenger.getGender() + ", Paspor: " + passenger.getPassportNumber() +
+
+        if (passengerList.length == 0) {
+            System.out.println("Tidak ada penumpang yang tersedia.");
+        } else {
+            for (int i = 0; i < passengerList.length; i++) {
+                Passengers passenger = passengerList[i];
+                System.out.println((i + 1) + ". Nama: " + passenger.getName() +
+                        ", Umur: " + passenger.getAge() +
+                        ", Jenis Kelamin: " + passenger.getGender() +
+                        ", Paspor: " + passenger.getPassportNumber() +
                         ", KTP: " + passenger.getKtpNumber());
             }
         }
     }
+
 
     public void editPassengerInfo(int number) {
         System.out.println("MENGEDIT DATA PENUMPANG");
@@ -112,18 +122,19 @@ public class PassengerTerminalViewImpl implements PassengersView {
 
         Passengers updatedPassenger = new Passengers();
         updatedPassenger.setName(newName);
-        updatedPassenger.setAge(Integer.parseInt(newAge));
+        updatedPassenger.setAge(Integer.parseInt(newAge));  // Validasi umur
         updatedPassenger.setGender(newGender);
         updatedPassenger.setPassportNumber(newPassportNumber);
         updatedPassenger.setKtpNumber(newKtpNumber);
 
-        boolean isEditSuccess = passengerService.editPassenger(number, updatedPassenger);
+        boolean isEditSuccess = passengerService.editPassenger(number, updatedPassenger);  // Pastikan parameter yang dikirim benar
         if (isEditSuccess) {
             System.out.println("Berhasil mengedit data penumpang.");
         } else {
             System.out.println("Gagal mengedit data penumpang.");
         }
     }
+
 
     public void showMenuRemovePassenger() {
         System.out.println("MENGHAPUS DATA PENUMPANG");
@@ -137,6 +148,7 @@ public class PassengerTerminalViewImpl implements PassengersView {
             }
         }
     }
+
 
     @Override
     public void run() {

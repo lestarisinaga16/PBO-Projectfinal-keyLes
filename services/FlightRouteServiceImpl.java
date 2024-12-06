@@ -13,6 +13,10 @@ public class FlightRouteServiceImpl implements FlightRouteService {
     public FlightRouteServiceImpl(FlightRouteRepository routeRepository) {
         this.routeRepository = routeRepository;
     }
+    private List<FlightRoute> FlightRoutes = new ArrayList<>();
+    public List<FlightRoute> getAllRoutes() {
+        return routes;  // Kembalikan list rute penerbangan
+    }
 
     @Override
     public void addFlightRoute(FlightRoute route) {
